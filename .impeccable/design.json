@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-16T18:04:33.226847+00:00",
+  "title": "Design System: 남귀현 경력 포트폴리오",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "displayName": "종이색",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.006 90)",
+          "oklch(26% 0.006 90)",
+          "oklch(38% 0.006 90)",
+          "oklch(49% 0.006 90)",
+          "oklch(61% 0.006 90)",
+          "oklch(72% 0.006 90)",
+          "oklch(84% 0.006 90)",
+          "oklch(95% 0.006 90)"
+        ]
+      },
+      "ink": {
+        "displayName": "차콜",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.022 250)",
+          "oklch(26% 0.022 250)",
+          "oklch(38% 0.022 250)",
+          "oklch(49% 0.022 250)",
+          "oklch(61% 0.022 250)",
+          "oklch(72% 0.022 250)",
+          "oklch(84% 0.022 250)",
+          "oklch(95% 0.022 250)"
+        ]
+      },
+      "navy": {
+        "displayName": "딥네이비",
+        "role": "primary",
+        "tonalRamp": [
+          "oklch(15% 0.045 235)",
+          "oklch(26% 0.045 235)",
+          "oklch(38% 0.045 235)",
+          "oklch(49% 0.045 235)",
+          "oklch(61% 0.045 235)",
+          "oklch(72% 0.045 235)",
+          "oklch(84% 0.045 235)",
+          "oklch(95% 0.045 235)"
+        ]
+      },
+      "green": {
+        "displayName": "청록",
+        "role": "secondary",
+        "tonalRamp": [
+          "oklch(15% 0.074 168)",
+          "oklch(26% 0.074 168)",
+          "oklch(38% 0.074 168)",
+          "oklch(49% 0.074 168)",
+          "oklch(61% 0.074 168)",
+          "oklch(72% 0.074 168)",
+          "oklch(84% 0.074 168)",
+          "oklch(95% 0.074 168)"
+        ]
+      },
+      "muted": {
+        "displayName": "차분한 회색",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.011 155)",
+          "oklch(26% 0.011 155)",
+          "oklch(38% 0.011 155)",
+          "oklch(49% 0.011 155)",
+          "oklch(61% 0.011 155)",
+          "oklch(72% 0.011 155)",
+          "oklch(84% 0.011 155)",
+          "oklch(95% 0.011 155)"
+        ]
+      },
+      "line": {
+        "displayName": "경계 회색",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.009 140)",
+          "oklch(26% 0.009 140)",
+          "oklch(38% 0.009 140)",
+          "oklch(49% 0.009 140)",
+          "oklch(61% 0.009 140)",
+          "oklch(72% 0.009 140)",
+          "oklch(84% 0.009 140)",
+          "oklch(95% 0.009 140)"
+        ]
+      },
+      "wash": {
+        "displayName": "옅은 회녹색",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.01 145)",
+          "oklch(26% 0.01 145)",
+          "oklch(38% 0.01 145)",
+          "oklch(49% 0.01 145)",
+          "oklch(61% 0.01 145)",
+          "oklch(72% 0.01 145)",
+          "oklch(84% 0.01 145)",
+          "oklch(95% 0.01 145)"
+        ]
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "project-transition",
+        "value": "color .2s, background .2s",
+        "purpose": "프로젝트 링크 상태 전환"
+      },
+      {
+        "name": "intro",
+        "value": ".7s cubic-bezier(.16,1,.3,1)",
+        "purpose": "투명도 .55→1, translateY 10px→0. 모션 축소 설정에서 비활성화."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "520px"
+      },
+      {
+        "name": "single-column",
+        "value": "850px"
+      },
+      {
+        "name": "wide",
+        "value": "1500px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "지원 관점 전환",
+      "kind": "button",
+      "refersTo": "switch-button-selected",
+      "description": "선택 관점을 드러내는 두 버튼.",
+      "html": "<div class=\"ds-switch\" role=\"group\" aria-label=\"포트폴리오 관점\"><button aria-pressed=\"true\">CRM·마케팅</button><button aria-pressed=\"false\">운영 시스템</button></div>",
+      "css": ".ds-switch{display:inline-flex;border:1px solid var(--line,#d4d9d3);border-radius:30px;padding:4px;gap:3px;font-family:Pretendard,\"Malgun Gothic\",sans-serif}.ds-switch button{border:0;border-radius:24px;padding:9px 17px;background:transparent;color:var(--muted,#626966);font:13px Pretendard,\"Malgun Gothic\",sans-serif;cursor:pointer}.ds-switch button[aria-pressed=true]{background:var(--navy,#183b50);color:white}.ds-switch button:focus-visible{outline:3px solid var(--green,#236958);outline-offset:5px}"
+    },
+    {
+      "name": "프로젝트 탐색 링크",
+      "kind": "nav",
+      "description": "밑줄과 선형 화살표로 다음 읽기를 안내한다.",
+      "html": "<a class=\"ds-link\" href=\"#projects\">프로젝트 살펴보기 <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 12h15M13 5l7 7-7 7\"/></svg></a>",
+      "css": ".ds-link{font:14px Pretendard,\"Malgun Gothic\",sans-serif;color:var(--ink,#202a34);text-decoration:none;white-space:nowrap;border-bottom:1px solid var(--ink,#202a34);padding:8px 0;display:inline-flex;gap:24px;align-items:center}.ds-link svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6}.ds-link:focus-visible{outline:3px solid var(--green,#236958);outline-offset:5px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "편집형 운영 사례집",
+    "overview": "기존 기획안의 종이색·차콜·딥네이비와 넓은 여백을 유지한다. CRM 전후 비교와 업무 흐름을 중심으로, 큰 제목과 수평 프로젝트 목록이 읽는 순서를 만든다. 이 문서는 최초 방향 문서를 실제 정적 HTML/CSS 구현에 맞춰 구체화한 기록이다.",
+    "keyCharacteristics": [
+      "한국어를 중심으로 한 읽기 쉬운 편집 구성",
+      "효율과 매출 규모를 함께 보여 주는 전후 비교",
+      "평평한 면과 가는 구분선",
+      "실제 증빙을 우선하고 개념도에는 성격을 명시"
+    ],
+    "rules": [],
+    "dos": [
+      "**Do** 한국어 문구와 단어 단위 줄바꿈을 사용한다.",
+      "**Do** 전후 수치와 출처, 비교의 한계를 가까이 배치한다.",
+      "**Do** 프로젝트별 상세 주소와 모바일 한 열 읽기 흐름을 유지한다."
+    ],
+    "donts": [
+      "**Don't** 출처와 기간이 없는 수치를 독립 검증값처럼 표현한다.",
+      "**Don't** 실제 화면이 아닌 개념도를 실제 증빙처럼 표시한다.",
+      "**Don't** 기존 평면 구성에 장식용 그림자나 AI 이미지를 추가한다."
+    ]
+  }
+}
