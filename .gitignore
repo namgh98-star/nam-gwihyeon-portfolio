@@ -1,0 +1,6 @@
+.source-notes.txt
+.impeccable/review/
+node_modules/
+.env
+.env.*
+!.env.example
