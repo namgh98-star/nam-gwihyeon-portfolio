@@ -1,33 +1,9 @@
 import { writeFile } from 'node:fs/promises';
-import { projects, workTools } from '../content/projects.mjs';
+import { projects } from '../content/projects.mjs';
 
 const escapeHtml = (value) => value.replace(/[&<>"']/g, (character) => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
 })[character]);
-
-const covers = {
-  friendtalk: '<img class="friendtalk-photo" src="assets/friendtalk.jpg" alt="">',
-  promotion: '<div class="sale-cover"><span>자사몰 기획전</span><strong>썸머 블랙<br>프라이데이</strong><span>상품 선정 · 쿠폰 설계</span><i></i><i></i></div>',
-  meta: '<div class="meta-cover"><img src="assets/meta-plain.jpg" alt="" loading="lazy"><img src="assets/meta-bind.jpg" alt="" loading="lazy"></div>',
-  ugc: '<div class="ugc-cover"><div><span>제품 소개형</span><strong>8<small>인</small></strong></div><div><span>매장 방문형</span><strong>5<small>인</small></strong></div></div>',
-};
-
-function renderCard(project) {
-  const { id, cover, category, title, summary, metric, metricLabel } = project;
-  return `<article class="project-card">
-    <a class="project-link" id="card-${escapeHtml(id)}" href="projects/${escapeHtml(id)}.html">
-      <div class="cover cover-${escapeHtml(cover)}" aria-hidden="true">${covers[cover]}</div>
-      <div class="card-body">
-        <div><p class="category">${escapeHtml(category)}</p><h3>${escapeHtml(title)}</h3><p class="card-copy">${escapeHtml(summary)}</p></div>
-        <div class="card-metric"><strong>${escapeHtml(metric)}</strong><span>${escapeHtml(metricLabel)}</span></div>
-      </div>
-    </a>
-  </article>`;
-}
-
-function renderTool({ title, description, metric }) {
-  return `<article class="tool"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(description)}</p><strong>${escapeHtml(metric)}</strong></article>`;
-}
 
 function renderEvidence({ title, type, caption, images, rows }) {
   const heading = `<h2>${escapeHtml(title)}</h2>`;
@@ -77,8 +53,6 @@ function renderProject(project) {
 `;
 }
 
-export async function buildWork(homeTemplate) {
-  const home = homeTemplate.replace('{{PROJECTS}}', () => projects.map(renderCard).join('\n')).replace('{{TOOLS}}', () => workTools.map(renderTool).join('\n'));
-  await writeFile('site/index.html', home);
+export async function buildWork() {
   await Promise.all(projects.map((project) => writeFile(`site/projects/${project.id}.html`, renderProject(project))));
 }

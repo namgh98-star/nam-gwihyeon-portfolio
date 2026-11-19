@@ -1,0 +1,42 @@
+.deck-reader { overflow-x: auto; }
+.deck-reader .slide { scroll-margin-top: 12px; }
+.slide-anchor { position: absolute; top: 0; left: 0; }
+.deck-controls { display: none; }
+
+@supports (zoom: calc(100px / 100px)) {
+  .deck-reader .slide { zoom: var(--z, clamp(.1, calc((100vw - 12px) / 1440px), 1)); }
+}
+
+@media screen and (max-width: 760px) {
+  body { padding-top: 0; }
+  .deck-controls {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    padding: 4px 10px;
+    background: #0e0e10;
+    border-bottom: 1px solid #2a2a2f;
+  }
+  .deck-controls a, .deck-controls button {
+    min-height: 44px;
+    padding: 0 12px;
+    border: 0;
+    background: transparent;
+    color: #f4f4f0;
+    font: 700 14px Pretendard, system-ui, sans-serif;
+    cursor: pointer;
+  }
+  .deck-controls a { display: inline-flex; align-items: center; text-decoration: none; }
+  .deck-controls button[aria-pressed='true'] { color: #d6ff3d; }
+  .deck-reader .slide { margin-top: 8px; margin-bottom: 8px; scroll-margin-top: 60px; }
+}
+
+@media print {
+  .deck-controls { display: none; }
+  .deck-reader { overflow: visible; }
+  .deck-reader .slide { zoom: 1; break-after: page; margin: 0; }
+  .deck-reader .slide:last-child { break-after: auto; }
+}

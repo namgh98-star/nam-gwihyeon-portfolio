@@ -1,6 +1,6 @@
 # 남귀현 경력 포트폴리오
 
-남귀현의 한국어 정적 포트폴리오입니다. 홈에서 카카오 친구톡, 썸머 블랙 프라이데이, 주얼리 메타 광고 소재, 올리브영 세일 콘텐츠 사례를 열 수 있습니다.
+남귀현의 한국어 정적 포트폴리오입니다. 홈은 v15 PDF와 같은 15장 구성의 HTML 포트폴리오입니다.
 
 ## 실행
 Node.js 22 이상에서 별도 패키지 설치 없이 실행합니다.
@@ -14,9 +14,9 @@ npm start
 미리보기: http://127.0.0.1:4173
 
 ## 수정
-- `content/projects.mjs`에서 대표 작업의 제목, 카드 요약, 수치, 집계 기준, 역할, 상세와 업무 도구를 수정합니다.
-- `content/home.html`에서 홈 소개와 프로필을 수정합니다.
-- `site/assets/work.css`에서 홈과 대표 작업 상세의 스타일을 수정합니다. 공개할 작업물 이미지는 `site/assets/`에 둡니다.
+- `content/home.html`에서 포트폴리오 본문과 슬라이드 배치를 수정합니다. 슬라이드 이미지는 `site/assets/deck/`에 둡니다.
+- `site/assets/deck-reader.css`와 `site/assets/deck-reader.js`는 화면에 맞춘 슬라이드 배율과 모바일 확대를 담당합니다.
+- 기존 상세 페이지의 내용은 `content/projects.mjs` 또는 `scripts/build.mjs`에서 수정합니다.
 
 수정 후 `npm run build`로 정적 HTML을 갱신합니다. 기존 상세 주소와 홈 주소도 계속 사용할 수 있습니다.
 
