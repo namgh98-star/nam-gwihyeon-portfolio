@@ -121,6 +121,18 @@ main{max-width:var(--max);margin:0 auto;padding:0 24px 96px}
 .cont-list{list-style:none;margin:0 0 14px;padding:0}
 .cont-list li{display:grid;grid-template-columns:56px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line);color:var(--sub);font-size:15px}
 .cont-list b{color:var(--ink)}
+.chat-grid{display:grid;grid-template-columns:1fr;gap:16px;max-width:680px;margin:18px 0 6px}
+.chat{margin:0;padding:16px;border:1px solid var(--line);border-radius:20px;background:#fff;display:flex;flex-direction:column;gap:12px}
+.chat-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.chat-head b{font-size:15px}.chat-head span{font-size:12px;color:var(--muted)}
+.chat ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;flex:1}
+.chat li{max-width:min(84%,560px);padding:8px 13px;border-radius:18px;font-size:14px;line-height:1.5}
+.chat li.them{align-self:flex-start;background:#e9e9eb;color:var(--ink);border-bottom-left-radius:5px}
+.chat li.them::before{content:"플랫폼 검수";display:block;font-size:11px;font-weight:600;color:var(--muted)}
+.chat li.me{align-self:flex-end;background:#0a84ff;color:#fff;border-bottom-right-radius:5px}
+.chat li i{display:block;margin-top:4px;font-style:normal;font-size:12px;opacity:.8}
+.chat-result{margin:0;align-self:flex-end;font-size:12px;font-weight:700;color:var(--acc)}
+.chat-note{margin:0 0 14px;font-size:12px;color:var(--muted)}
 .creative-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .creative-row figure{margin:0}
 .creative-row img{width:100%;border-radius:8px}
@@ -222,8 +234,7 @@ main{max-width:var(--max);margin:0 auto;padding:0 24px 96px}
 .contact-links{display:flex;gap:16px;align-items:center}
 .contact-links a{color:var(--acc);text-decoration:none;font-weight:600}
 
-@media screen and (max-width:820px){
-  .problem{grid-template-columns:1fr;gap:6px}
+@media screen and (max-width:820px){  .problem{grid-template-columns:1fr;gap:6px}
   .hero{padding:56px 0 40px}
   .br-wide{display:none}
   .hero-kpis,.case-body,.profile-cols,.kpi-row,.funnel-grid,.comm-grid{grid-template-columns:1fr}
