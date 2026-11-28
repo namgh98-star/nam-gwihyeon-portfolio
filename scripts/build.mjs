@@ -1,4 +1,5 @@
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 import {buildWork} from './render-work.mjs';
 const arrow='<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg>';
 const source='<p class="source">출처: 경력 포트폴리오 기획안 · 2026년 9월 정리<br>집계 기간 및 관리자 원본은 추가 확인 예정입니다.</p>';
@@ -40,7 +41,9 @@ function table(head,rows){return `<div class="table-wrap"><table><thead><tr>${he
 function shell(title,body,depth=''){return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="상품과 프로모션, 콘텐츠와 CRM, 크리에이터 협업과 운영 개선을 연결하는 남귀현의 포트폴리오."><meta name="theme-color" content="#183b50"><title>${title} | 남귀현 포트폴리오</title><link rel="stylesheet" href="${depth}assets/style.css"><link rel="stylesheet" href="${depth}assets/impact.css"><script defer src="${depth}assets/app.js"></script></head><body><a class="skip" href="#main">본문으로 건너뛰기</a><div class="wrap"><header class="header"><a class="brand" href="${depth}index.html">남귀현<span>경력 포트폴리오</span></a><nav class="nav" aria-label="주 메뉴"><a href="${depth}index.html#projects">프로젝트</a><a href="${depth}index.html#about">소개</a></nav></header>${body}<footer class="footer"><span>남귀현 · 상품·프로모션, 콘텐츠·CRM과 운영 개선</span><span>2026년 9월 기준 · <button class="print" data-print>이 페이지 인쇄</button></span><a href="#main">맨 위로</a></footer></div></body></html>`;}
 const home=await readFile('content/home.html','utf8');
 await mkdir('site/projects',{recursive:true});
-await Promise.all([writeFile('site/index.html', home), buildWork()]);
+// CSS 주소에 내용 해시를 붙여, 배포 직후 브라우저가 예전 CSS를 캐시로 쓰지 않게 함
+const cssVer=createHash('md5').update(await readFile('site/assets/portfolio.css')).digest('hex').slice(0,8);
+await Promise.all([writeFile('site/index.html', home.replace('href="assets/portfolio.css"',`href="assets/portfolio.css?v=${cssVer}"`)), buildWork()]);
 for(let i=0;i<projects.length;i++){const p=projects[i];const next=projects[(i+1)%projects.length];const body=`<main id="main"><div class="breadcrumb"><a href="../index.html#projects">프로젝트</a> / ${p.name}</div><header class="case-hero"><h1>${p.title}</h1><p class="lede">${p.intro}</p><dl class="meta"><div><dt>담당 범위</dt><dd>${p.role}</dd></div><div><dt>운영 환경</dt><dd>${p.scope}</dd></div><div><dt>자료 기준</dt><dd>${p.basis||'2026년 9월 기획안'}</dd></div></dl></header><div class="case-layout"><nav class="toc" aria-label="사례 목차"><a href="#problem">발견과 문제 정의</a><a href="#decision">가설·판단과 실행</a><a href="#results">결과</a><a href="#fieldwork">추가 업무</a><a href="#limits">회고와 다음 단계</a></nav><article>${p.sections.map(([id,title,html])=>`<section class="case-section" id="${id}"><h2>${title}</h2>${html}</section>`).join('')}</article></div><nav class="case-bottom" aria-label="다른 프로젝트"><a class="text-link" href="../index.html#projects">프로젝트 목록</a><a class="text-link" href="${next.id}.html">${next.name} ${arrow}</a></nav></main>`;await writeFile(`site/projects/${p.id}.html`,shell(p.name,body,'../'));}
 await writeFile('site/.nojekyll','');
 await writeFile('site/404.html',shell('페이지를 찾을 수 없습니다','<main id="main" class="hero"><h1>페이지를 찾을 수 없습니다.</h1><p class="lede">주소를 확인하거나 포트폴리오 홈으로 돌아가 주세요.</p><a class="text-link" href="./index.html">포트폴리오 홈</a></main>'));
