@@ -315,3 +315,163 @@ main{max-width:var(--max);margin:0 auto;padding:0 24px 96px}
 .scale-strip b{display:block;font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
 .scale-strip span{font-size:13px;color:var(--muted)}
 @media screen and (max-width:820px){.scale-strip{grid-template-columns:repeat(2,1fr)}.scale-strip li:nth-child(3){border-left:0}.scale-strip li:nth-child(n+3){border-top:1px solid var(--line)}.scale-strip b{font-size:22px}}
+
+/* ===== CASE v2 레이아웃 (진행업무 / 달성 · 좌 45 요약 / 우 55 비주얼) — 목업 b14 이식 ===== */
+/* 목업 전용 — 색 · 폰트는 기존 portfolio.css 그대로. 글자 단계 32/20/16/14 */
+.cv2{--muted:#5b6270}
+.cv2 ::selection{background:var(--acc-soft);color:var(--ink)}
+
+/* 제목 블록: 케이스 태그는 잉크색 면 라벨(주제가 바로 보이게) + 기존 2줄 제목 */
+.cv2 .tag{display:inline-block;margin:0 0 12px;padding:8px 16px;background:var(--ink);color:#fff;font-size:16px;font-weight:700;letter-spacing:0}
+.cv2 h2{margin:0;font-size:32px;text-wrap:balance}
+.cv2 h2 em{font-style:normal;color:var(--acc)}
+
+/* 본문: 좌 45% (메타 · 진행업무 · 달성) / 우 55% (큰 이미지) */
+.cv2-main{display:grid;grid-template-columns:45fr 55fr;gap:40px;align-items:start;margin-top:32px}
+.cv2-left{display:grid;gap:32px;min-width:0}
+.cv2 h3{margin:0 0 12px;font-size:20px;line-height:1.3;font-weight:700;color:var(--ink)}
+
+/* 메타 3줄 (회색) */
+.cv2 .meta{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:14px;color:var(--muted)}
+.cv2 .meta li{display:grid;grid-template-columns:48px 1fr;gap:8px}
+.cv2 .meta b{font-weight:600;color:var(--ink)}
+
+/* 진행업무: 명사구 한 줄씩 */
+.cv2 .bul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.cv2 .bul li{position:relative;padding-left:16px;font-size:16px;color:var(--ink)}
+.cv2 .bul li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;background:var(--ink)}
+
+/* 달성: 결과가 첫 줄 · 기준은 회색 한 줄 */
+.cv2 .ach{margin:0;padding:0;list-style:none;display:grid;gap:16px}
+.cv2 .ach li{padding:0 0 0 16px;position:relative}
+.cv2 .ach li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border:1.5px solid var(--ink);box-sizing:border-box}
+.cv2 .ach strong{display:block;font-size:20px;line-height:1.35;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.cv2 .ach strong i{font-style:normal;color:var(--acc)}
+.cv2 .ach span{display:block;margin-top:2px;font-size:14px;color:var(--muted)}
+
+/* 우: 소재 Before / After — 배지(고정폭) + 한 줄 제목, 설명은 이미지 아래 */
+.cv2-right{min-width:0;display:grid;gap:12px}
+.cv2-right .hd{display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:center;margin:0 0 10px}
+.cv2-right .badge{display:block;text-align:center;padding:6px 0;border-radius:6px;font-size:14px;font-weight:700;line-height:1.2;background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.cv2-right .after .badge{background:var(--acc);color:#fff;border-color:var(--acc)}
+.cv2-right .hd strong{font-size:16px;font-weight:600;line-height:1.35;color:var(--ink)}
+.cv2-right .pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cv2-right .pair img{width:100%;height:auto;display:block;border-radius:8px}
+.cv2-right .before img{aspect-ratio:334/256;object-fit:cover}
+.cv2-right .after img{aspect-ratio:1/1;object-fit:cover}
+.cv2-right .cap2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.cv2-right .cap2 span{font-size:14px;font-weight:500;color:var(--ink)}
+.cv2-right .fn{display:flex;gap:8px;align-items:flex-start;margin:4px 0 0;padding:10px 12px;border-radius:8px;background:var(--soft);font-size:14px;line-height:1.5;color:var(--muted)}
+.cv2-right .fn svg{flex:none;width:16px;height:16px;margin-top:3px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.cv2 .meta span{text-wrap:balance}
+/* 툴 태그: 조용한 외곽선 칩(브랜드 로고 없이 글자만) — After 제목 줄 오른쪽 끝 */
+.cv2-right .after .hd{grid-template-columns:72px 1fr auto}
+.cv2-right .tool{display:inline-block;padding:4px 10px;border:1px solid var(--line);border-radius:6px;background:#fff;font-size:14px;font-weight:600;line-height:1.2;color:var(--ink)}
+/* 소재 헤더: CRM 소재 · 사용 툴 : Figma (Figma만 파랑) */
+.cv2-right .sec{margin:0 0 4px}
+.cv2-right .sec i{font-style:normal;color:var(--acc)}
+/* cv2: 리드 한 줄 · 달성 숫자 먼저 · 소재 헤더에 무엇을 바꿨는지 */
+.cv2 .lead{margin:14px 0 0;max-width:660px;font-size:16px;line-height:1.55;color:var(--ink);text-wrap:pretty}
+.cv2 .ach li.sm strong{font-size:16px;font-weight:600}
+.cv2-right .h1row{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin:0 0 8px}
+.cv2-right .h1row .sec{margin:0}
+.cv2 .toollbl{font-size:14px;color:var(--muted)}
+.cv2 .toollbl b{font-weight:600;color:var(--ink)}
+.cv2 .pl{list-style:none;margin:0 0 28px;padding:0;display:grid;gap:10px}
+.cv2 .pl b{display:block;font-size:16px;font-weight:600;color:var(--ink)}
+.cv2 .pl span{display:block;margin-top:2px;font-size:14px;color:var(--muted)}
+.cv2-right .flow{width:72px;display:flex;justify-content:center;line-height:0}
+.cv2-right .flow svg{display:block;width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* 자세히 보기 */
+.cv2 .case-more{margin:40px 0 0;border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;background:none}
+.cv2 .case-more summary{padding:16px 4px;font-size:16px;cursor:pointer;border-radius:6px}
+.cv2 .case-more summary span{font-size:14px;color:var(--muted)}
+.cv2 .case-more summary:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.cv2 .more-body{padding:8px 4px 24px;max-width:640px;margin:0 auto}
+.cv2 .seg-flow{margin:0;border:0;padding:0;background:none;box-shadow:none;display:block}
+.cv2 .seg-flow ol{display:flex;flex-direction:column;align-items:center;gap:8px;margin:0;padding:0;list-style:none}
+.cv2 .seg-flow ol li{margin:0;box-sizing:border-box;text-align:center;padding:12px 16px;border-radius:10px;background:var(--soft);border:1px solid transparent}
+.cv2 .seg-flow ol li b{display:block;font-size:16px;color:var(--ink)}
+.cv2 .seg-flow ol li span{display:block;margin-top:2px;font-size:14px;color:var(--muted)}
+.cv2 .seg-flow ol li em{font-style:normal;font-weight:700;color:var(--ink)}
+.cv2 .seg-flow ol li.seg-all{width:100%}.cv2 .seg-flow ol li.seg-in{width:88%}.cv2 .seg-flow ol li.seg-out{width:76%}
+.cv2 .seg-flow ol li.seg-final{width:66%;background:var(--acc-soft);border-color:var(--acc)}
+.cv2 .seg-flow ol li.seg-final b,.cv2 .seg-flow ol li.seg-final span{color:var(--acc)!important}
+.cv2 .seg-flow ol li.seg-arrow{width:auto;background:none;border:0;padding:0;line-height:0}
+.cv2 .arr-down{display:block;width:18px;height:18px;stroke:#aab1bc;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.cv2 .seg-note{margin:12px 0 0;font-size:14px;color:var(--muted);text-align:center}
+.cv2 .seg-foot{margin:4px 0 0;font-size:14px;color:var(--muted);text-align:center}
+.cv2 .seg-foot b{color:var(--ink);font-weight:600}
+
+@media screen and (max-width:820px){
+  .cv2-main{grid-template-columns:1fr;gap:32px}
+}
+.cv2 .more-body .pl2{margin:0 0 24px;grid-template-columns:1fr}
+.cv2 .more-body h3{margin-top:32px}
+.cv2 .more-body h3:first-child{margin-top:0}
+
+/* CASE 05 우측: 소재 3종 + 운영 화면 일부 */
+.cv2 .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0}
+.cv2 .trio figure{margin:0;min-width:0}
+.cv2 .trio img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:8px;display:block}
+.cv2 .trio figcaption{margin-top:6px;font-size:14px;line-height:1.4;color:var(--ink);font-variant-numeric:tabular-nums}
+.cv2 .trio figcaption b{display:inline-block;margin-right:4px;padding:0 6px;border-radius:4px;background:var(--acc);color:#fff;font-size:13px}
+.cv2 .cap1{margin:0;font-size:14px;color:var(--muted)}
+.cv2 .shots{display:grid;gap:8px}
+.cv2 .shots img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px}
+.cv2 .more-body .steps{margin:0 0 24px}
+.cv2 .trio figcaption span{display:block}
+
+/* CASE 03 우측: 쿠폰 사용률 막대 + 점검 도구 화면 */
+.cv2 .cv2-right .kpi-bars{margin:0}
+.cv2 .shot1{margin:0}
+.cv2 .shot1 img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px}
+.cv2 .shot1 figcaption{margin-top:8px;font-size:14px;color:var(--muted)}
+
+/* CASE 04 우측: 시딩 퍼널 막대 + 결과물 2장 · 자세히 보기 안 커뮤니케이션 */
+.cv2 .kpi-bars .bar,.cv2 .kpi-bars .bar-note{font-size:14px}
+.cv2 .duo{display:flex;gap:12px;align-items:flex-start;margin:0}
+.cv2 .duo figure{flex-basis:0;min-width:0;margin:0}
+.cv2 .duo img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px}
+.cv2 .duo figcaption{margin-top:8px;font-size:14px;line-height:1.4;color:var(--muted)}
+.cv2 .more-body .cm{margin:0 0 20px}
+.cv2 .more-body .cm img{width:100%;height:auto;display:block;border-radius:8px;border:1px solid var(--line)}
+.cv2 .more-body .cm img.cm-s{width:auto;max-width:100%}
+.cv2 .more-body .cm figcaption{margin-top:8px}
+.cv2 .more-body .cm b{display:block;font-size:16px;font-weight:600;color:var(--ink)}
+.cv2 .more-body .cm span{display:block;margin-top:2px;font-size:14px;color:var(--muted)}
+.cv2 .more-body .cont-list li{font-size:16px}
+.cv2 .more-body .chat-grid{margin:20px 0 6px}
+.cv2 .more-body .chat-head span,.cv2 .more-body .chat-result,.cv2 .more-body .chat-note,.cv2 .more-body .chat li i{font-size:14px}
+.cv2 .duo figcaption{word-break:keep-all}
+.cv2 .duo figcaption span{display:block}
+.cv2 .duo figcaption .nw{display:inline;white-space:nowrap}
+.cv2 .bar-note{word-break:keep-all}
+
+/* ===== AX 섹션 v2: 도구 3종도 같은 틀(태그 · 제목 / 좌 45 전후 · 달성 / 우 55 화면) ===== */
+.ax-tool.axv2{display:block;padding:48px 0 0;margin-top:48px}
+.cv2 .axt{margin:0;font-size:28px;line-height:1.35;text-wrap:balance}
+.cv2 .axt em{font-style:normal;color:var(--acc)}
+.axv2 .meta li{align-items:start}
+.axv2 .meta .ax-feats{margin:0;gap:6px}
+.axv2 .meta .ax-feats li{display:block;padding:3px 10px;font-size:14px;color:var(--muted)}
+.axv2 .ba{margin:0;display:grid;gap:10px}
+.axv2 .ba div{display:grid;grid-template-columns:32px 1fr;gap:8px;padding:12px 14px;border-radius:10px;background:var(--soft);font-size:16px;line-height:1.5;color:var(--muted)}
+.axv2 .ba div.after{background:var(--acc-soft);color:var(--ink)}
+.axv2 .ba dt{font-weight:700;color:var(--muted)}
+.axv2 .ba .after dt{color:var(--acc)}
+.axv2 .ba dd{margin:0}
+.axv2 .ba dd b{color:var(--acc);margin-right:6px}
+.cv2 .axshot{margin:0}
+.cv2 .axshot img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px;object-fit:cover;object-position:top}
+.cv2 .axshot.s1 img{aspect-ratio:560/480}
+.cv2 .axshot.wide img{aspect-ratio:560/300}
+.cv2 .axshot figcaption{margin-top:8px;font-size:14px;line-height:1.4;color:var(--muted);word-break:keep-all}
+.cv2 .axshots{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+.cv2 .axshots img{aspect-ratio:1/1}
+.cv2 .ax-index{margin-top:24px}
+.cv2 .ax-index b{font-size:14px}
+.cv2 .ax-index a{font-size:16px}
+.ax-intro.cv2>p.tag{margin:0 0 12px;color:#fff}
+.cv2 .axshots img{aspect-ratio:auto}
