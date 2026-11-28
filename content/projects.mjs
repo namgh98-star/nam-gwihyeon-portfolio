@@ -2,7 +2,7 @@ export const projects = [
   {
     id: 'friendtalk', category: 'CRM', title: '카카오 친구톡 타깃 재설계', period: '2025.01 – 2026.06',
     summary: '장바구니와 재방문 이력으로 발송할 고객을 골랐습니다.',
-    metric: '118% → 222%', metricLabel: '친구톡 ROAS', metricBasis: '2025년 상반기 대비 2026년 상반기',
+    metric: '3.3% → 4.7%', metricLabel: '친구톡 전환율', metricBasis: '2025(입사 전) 대비 2026년 1–7월 · 같은 기준 집계',
     role: '세그먼트 설계 · 카피 작성 · 발송 세팅', cover: 'friendtalk',
     context: '전체 대상에게 같은 메시지를 발송하던 친구톡에서, 구매 관심도가 높은 고객에게 메시지를 보낼 기준이 필요했습니다.',
     steps: [
